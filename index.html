@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>E2E Spoken Institution | Extraordinary English</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS - Production version -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -22,6 +23,9 @@
     
     <!-- EmailJS for sending emails -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Referrer policy for Google Sign-In -->
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
     <script>
         tailwind.config = {
@@ -1094,11 +1098,13 @@
             measurementId: "G-SGWZ6CB0HX"
         };
 
-        // EmailJS Configuration - LOAD FROM VERCEL ENVIRONMENT
+        // ============================================
+        // EMAILJS CONFIGURATION - HARDCODED (SAFE!)
+        // ============================================
         const emailJSConfig = {
-            publicKey: "%%EMAILJS_PUBLIC_KEY%%",   // Will be replaced by Vercel
-            serviceId: "%%EMAILJS_SERVICE_ID%%",    // Will be replaced by Vercel
-            templateId: "%%EMAILJS_TEMPLATE_ID%%"   // Will be replaced by Vercel
+            publicKey: "HPz9wFNdyoJpu2zRV",      // Your actual Public Key
+            serviceId: "service_2qve8vk",        // Your actual Service ID
+            templateId: "template_9vohei9"       // Your actual Template ID
         };
 
         // Initialize Firebase with error handling
@@ -1116,12 +1122,8 @@
 
         // Initialize EmailJS with error handling
         try {
-            if (emailJSConfig.publicKey && !emailJSConfig.publicKey.includes('%%')) {
-                emailjs.init(emailJSConfig.publicKey);
-                console.log('✅ EmailJS initialized successfully');
-            } else {
-                console.warn('⚠️ EmailJS public key not set - emails will not send');
-            }
+            emailjs.init(emailJSConfig.publicKey);
+            console.log('✅ EmailJS initialized successfully with key:', emailJSConfig.publicKey);
         } catch (error) {
             console.error('❌ EmailJS initialization error:', error);
         }
@@ -1275,16 +1277,11 @@
         // ============================================
         
         async function sendWelcomeEmail(userEmail, userName) {
-            // Check if EmailJS is properly configured
-            if (!emailJSConfig.publicKey || emailJSConfig.publicKey.includes('%%')) {
-                console.log('📧 Welcome email would be sent to:', userEmail);
-                console.log('⚠️ EmailJS not configured - enable in Vercel environment variables');
-                return;
-            }
-            
             try {
+                console.log('📧 Sending welcome email to:', userEmail);
+                
                 // Send email using EmailJS
-                await emailjs.send(
+                const response = await emailjs.send(
                     emailJSConfig.serviceId,
                     emailJSConfig.templateId,
                     {
@@ -1296,10 +1293,17 @@
                         year: new Date().getFullYear()
                     }
                 );
-                console.log('✅ Welcome email sent successfully');
+                
+                console.log('✅ Welcome email sent successfully!', response);
+                return true;
             } catch (error) {
                 console.error('❌ Failed to send welcome email:', error);
-                // Don't show error to user - email is not critical
+                console.error('Error details:', {
+                    message: error.message,
+                    text: error.text,
+                    status: error.status
+                });
+                return false;
             }
         }
 
