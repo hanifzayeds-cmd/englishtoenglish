@@ -1552,7 +1552,7 @@
         });
 
         // ============================================
-        // ASSESSMENT QUESTIONS (keep your existing questions)
+        // COMPLETE ASSESSMENT QUESTIONS
         // ============================================
         const questions = {
             grammar: [
@@ -1567,15 +1567,603 @@
                     correct: 2,
                     explanation: "In present simple negative, we use 'doesn't' + base form of verb"
                 },
-                // ... (keep all your existing questions here)
+                {
+                    question: "Which sentence uses the present perfect correctly?",
+                    options: [
+                        "I have went to London",
+                        "I have gone to London",
+                        "I have been to London",
+                        "I have went to London yesterday"
+                    ],
+                    correct: 2,
+                    explanation: "'Have been to' is used for experiences and visits to places"
+                },
+                {
+                    question: "Choose the correct conditional form: If I _____ you, I would accept the offer.",
+                    options: ["am", "were", "was", "would be"],
+                    correct: 1,
+                    explanation: "In hypothetical situations, we use 'were' for all persons (subjunctive mood)"
+                },
+                {
+                    question: "Select the correctly punctuated sentence:",
+                    options: [
+                        "Its a beautiful day",
+                        "It's a beautiful day",
+                        "Its' a beautiful day",
+                        "It's a beautiful, day"
+                    ],
+                    correct: 1,
+                    explanation: "'It's' is the contraction of 'it is'"
+                },
+                {
+                    question: "Which word is an adverb?",
+                    options: ["quickly", "quick", "quickness", "quicken"],
+                    correct: 0,
+                    explanation: "Adverbs often end in -ly and modify verbs, adjectives, or other adverbs"
+                },
+                {
+                    question: "Choose the correct passive voice: The letter _____ by the secretary.",
+                    options: ["was written", "wrote", "is wrote", "has written"],
+                    correct: 0,
+                    explanation: "Passive voice uses 'be' + past participle"
+                },
+                {
+                    question: "Which sentence uses the correct word order?",
+                    options: [
+                        "She speaks well English",
+                        "She speaks English well",
+                        "She well speaks English",
+                        "Well she speaks English"
+                    ],
+                    correct: 1,
+                    explanation: "Adverbs of manner usually come after the object"
+                },
+                {
+                    question: "Choose the correct article: She is _____ university student.",
+                    options: ["a", "an", "the", "no article"],
+                    correct: 0,
+                    explanation: "We use 'a' before words that start with a consonant sound"
+                },
+                {
+                    question: "Which preposition is correct? I'm interested _____ learning Spanish.",
+                    options: ["in", "on", "at", "for"],
+                    correct: 0,
+                    explanation: "The correct preposition with 'interested' is 'in'"
+                },
+                {
+                    question: "Choose the correct relative pronoun: The man _____ car was stolen reported it to the police.",
+                    options: ["who", "whom", "whose", "which"],
+                    correct: 2,
+                    explanation: "'Whose' shows possession and is used for people"
+                }
             ],
-            vocabulary: [],
-            comprehension: [],
-            speaking: []
+            vocabulary: [
+                {
+                    question: "Choose the word that means 'very careful and precise':",
+                    options: ["meticulous", "careless", "hasty", "negligent"],
+                    correct: 0,
+                    explanation: "Meticulous means showing great attention to detail; very careful and precise."
+                },
+                {
+                    question: "What is the synonym of 'ephemeral'?",
+                    options: ["permanent", "short-lived", "strong", "weak"],
+                    correct: 1,
+                    explanation: "Ephemeral means lasting for a very short time."
+                },
+                {
+                    question: "Select the correct word: Her speech was _____ and inspiring.",
+                    options: ["eloquent", "quiet", "silent", "boring"],
+                    correct: 0,
+                    explanation: "Eloquent means fluent or persuasive in speaking or writing."
+                },
+                {
+                    question: "What does 'ubiquitous' mean?",
+                    options: ["rare", "everywhere", "nowhere", "hidden"],
+                    correct: 1,
+                    explanation: "Ubiquitous means present, appearing, or found everywhere."
+                },
+                {
+                    question: "Choose the antonym of 'benevolent':",
+                    options: ["kind", "charitable", "malevolent", "generous"],
+                    correct: 2,
+                    explanation: "Malevolent is the opposite of benevolent (well-meaning and kindly)."
+                },
+                {
+                    question: "Which word means 'to make something worse'?",
+                    options: ["improve", "exacerbate", "resolve", "solve"],
+                    correct: 1,
+                    explanation: "Exacerbate means to make a problem, bad situation, or negative feeling worse."
+                },
+                {
+                    question: "Select the correct word: The _____ of the building was impressive.",
+                    options: ["facade", "face", "front", "surface"],
+                    correct: 0,
+                    explanation: "Facade refers to the front of a building, especially an imposing or decorative one."
+                },
+                {
+                    question: "What is the meaning of 'cognizant'?",
+                    options: ["unaware", "ignorant", "aware", "forgetful"],
+                    correct: 2,
+                    explanation: "Cognizant means having knowledge or being aware of something."
+                }
+            ],
+            comprehension: [
+                {
+                    question: "Read the passage: 'Despite the heavy rain, the event continued as planned. The organizers had prepared for such weather by setting up covered areas.' What can be inferred about the organizers?",
+                    options: [
+                        "They were unprepared",
+                        "They were experienced and foresighted",
+                        "They were lucky",
+                        "They canceled the event"
+                    ],
+                    correct: 1,
+                    explanation: "The passage states they had prepared for such weather, showing they were experienced and foresighted."
+                },
+                {
+                    question: "If someone is described as 'a wolf in sheep's clothing', what does it mean?",
+                    options: [
+                        "They are harmless",
+                        "They appear friendly but are dangerous",
+                        "They love animals",
+                        "They are wearing a costume"
+                    ],
+                    correct: 1,
+                    explanation: "This idiom means someone appears harmless but is actually dangerous or deceptive."
+                },
+                {
+                    question: "Which sentence implies certainty?",
+                    options: [
+                        "It might rain tomorrow",
+                        "It could rain tomorrow",
+                        "It will rain tomorrow",
+                        "It may rain tomorrow"
+                    ],
+                    correct: 2,
+                    explanation: "'Will' expresses certainty, while 'might', 'could', and 'may' express possibility."
+                },
+                {
+                    question: "Read: 'The new policy will take effect immediately, much to the dismay of employees who preferred the old system.' What is the employees' reaction?",
+                    options: [
+                        "They are happy",
+                        "They are indifferent",
+                        "They are displeased",
+                        "They are excited"
+                    ],
+                    correct: 2,
+                    explanation: "'Dismay' means disappointment or distress, indicating they are displeased."
+                },
+                {
+                    question: "What does 'break the ice' mean?",
+                    options: [
+                        "To physically break ice",
+                        "To start a conversation in a social setting",
+                        "To end a relationship",
+                        "To cool down"
+                    ],
+                    correct: 1,
+                    explanation: "This idiom means to initiate conversation in a formal or awkward situation."
+                },
+                {
+                    question: "If a solution is 'elusive', it means:",
+                    options: [
+                        "Easy to find",
+                        "Difficult to find or achieve",
+                        "Obvious",
+                        "Clear"
+                    ],
+                    correct: 1,
+                    explanation: "Elusive means difficult to find, catch, or achieve."
+                }
+            ],
+            speaking: [
+                {
+                    question: "In a job interview, how would you professionally describe a weakness?",
+                    options: [
+                        "I have no weaknesses",
+                        "I'm terrible at everything",
+                        "I sometimes focus too much on details, but I'm learning to balance perfectionism with efficiency",
+                        "My boss says I'm lazy"
+                    ],
+                    correct: 2,
+                    explanation: "This response shows self-awareness and a growth mindset, which is professional and honest."
+                },
+                {
+                    question: "When you don't understand what someone said, the most polite response is:",
+                    options: [
+                        "What?",
+                        "Huh?",
+                        "I'm sorry, could you please repeat that?",
+                        "Speak clearly"
+                    ],
+                    correct: 2,
+                    explanation: "This is polite and shows respect while requesting clarification."
+                },
+                {
+                    question: "How would you politely interrupt a meeting to add important information?",
+                    options: [
+                        "Stop talking!",
+                        "If I may add something here...",
+                        "Let me speak",
+                        "Just shut up and listen"
+                    ],
+                    correct: 1,
+                    explanation: "This phrase shows respect while seeking permission to contribute."
+                },
+                {
+                    question: "Which response is most appropriate when accepting a compliment?",
+                    options: [
+                        "I know, I'm awesome",
+                        "Thank you, I appreciate that",
+                        "It's nothing",
+                        "Whatever"
+                    ],
+                    correct: 1,
+                    explanation: "This is gracious and professional, acknowledging the compliment without arrogance."
+                },
+                {
+                    question: "How would you professionally disagree with a colleague's idea?",
+                    options: [
+                        "That's stupid",
+                        "You're wrong",
+                        "I see your point, but have we considered this alternative perspective?",
+                        "No way"
+                    ],
+                    correct: 2,
+                    explanation: "This shows respect while introducing a different viewpoint constructively."
+                },
+                {
+                    question: "When making a presentation, the best way to engage your audience is:",
+                    options: [
+                        "Read directly from slides",
+                        "Speak in a monotone",
+                        "Use rhetorical questions and maintain eye contact",
+                        "Look at the floor"
+                    ],
+                    correct: 2,
+                    explanation: "Rhetorical questions and eye contact create engagement and connection with the audience."
+                }
+            ]
         };
 
-        // ... (keep all your existing assessment code below)
-        
+        // State management for modal
+        let currentSection = 0;
+        const sections = ['grammar', 'vocabulary', 'comprehension', 'speaking'];
+        const sectionTitles = ['Grammar & Structure', 'Vocabulary Range', 'Comprehension', 'Speaking Scenarios'];
+        let currentQuestionIndex = 0;
+        let answers = {
+            grammar: new Array(questions.grammar.length).fill(null),
+            vocabulary: new Array(questions.vocabulary.length).fill(null),
+            comprehension: new Array(questions.comprehension.length).fill(null),
+            speaking: new Array(questions.speaking.length).fill(null)
+        };
+        let score = 0;
+
+        // DOM Elements for modal
+        const sectionNameEl = document.getElementById('modal-section-name');
+        const currentQEl = document.getElementById('modal-current-q');
+        const totalQEl = document.getElementById('modal-total-q');
+        const liveScoreEl = document.getElementById('modal-live-score');
+        const questionContainer = document.getElementById('modal-question-container');
+        const prevBtn = document.getElementById('modal-prev-btn');
+        const nextBtn = document.getElementById('modal-next-btn');
+        const step1 = document.getElementById('modal-step1');
+        const step2 = document.getElementById('modal-step2');
+        const step3 = document.getElementById('modal-step3');
+        const step4 = document.getElementById('modal-step4');
+        const assessmentModal = document.getElementById('assessment-modal');
+        const resultsModal = document.getElementById('results-modal');
+
+        // Open assessment modal
+        function openAssessment() {
+            assessmentModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            initAssessment();
+        }
+
+        // Close assessment modal
+        function closeAssessment() {
+            assessmentModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetAssessment();
+        }
+
+        // Reset assessment
+        function resetAssessment() {
+            currentSection = 0;
+            currentQuestionIndex = 0;
+            answers = {
+                grammar: new Array(questions.grammar.length).fill(null),
+                vocabulary: new Array(questions.vocabulary.length).fill(null),
+                comprehension: new Array(questions.comprehension.length).fill(null),
+                speaking: new Array(questions.speaking.length).fill(null)
+            };
+            score = 0;
+            updateScore();
+        }
+
+        // Initialize assessment
+        function initAssessment() {
+            loadQuestion();
+            updateProgressSteps();
+            updateScore();
+        }
+
+        // Load current question
+        function loadQuestion() {
+            const section = sections[currentSection];
+            const sectionQuestions = questions[section];
+            const question = sectionQuestions[currentQuestionIndex];
+            
+            sectionNameEl.textContent = sectionTitles[currentSection];
+            currentQEl.textContent = currentQuestionIndex + 1;
+            totalQEl.textContent = sectionQuestions.length;
+
+            let html = `
+                <div class="mb-8">
+                    <p class="text-white text-lg mb-6">${question.question}</p>
+                    <div class="space-y-3">
+            `;
+
+            question.options.forEach((option, index) => {
+                const isSelected = answers[section][currentQuestionIndex] === index;
+                const isCorrect = answers[section][currentQuestionIndex] !== null && index === question.correct;
+                const isIncorrect = answers[section][currentQuestionIndex] !== null && answers[section][currentQuestionIndex] === index && index !== question.correct;
+                
+                let additionalClass = 'option-btn';
+                if (isSelected) additionalClass += ' selected';
+                if (isCorrect) additionalClass += ' correct';
+                if (isIncorrect) additionalClass += ' incorrect';
+
+                html += `
+                    <div class="${additionalClass} p-4 rounded-xl flex items-center justify-between" onclick="selectOption(${index})">
+                        <span class="text-slate-200">${option}</span>
+                        ${isCorrect ? '<i class="fa-solid fa-check-circle text-green-500"></i>' : ''}
+                        ${isIncorrect ? '<i class="fa-solid fa-times-circle text-red-500"></i>' : ''}
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+                <div class="glass p-4 rounded-xl bg-brand-primary/5 border border-brand-primary/20" id="explanation-container" style="display: ${answers[section][currentQuestionIndex] !== null ? 'block' : 'none'}">
+                    <p class="text-sm text-slate-300">
+                        <span class="text-brand-primary font-bold">Explanation:</span> 
+                        ${answers[section][currentQuestionIndex] !== null ? question.explanation : ''}
+                    </p>
+                </div>
+            `;
+
+            questionContainer.innerHTML = html;
+
+            // Update navigation buttons
+            prevBtn.disabled = currentSection === 0 && currentQuestionIndex === 0;
+            
+            const isLastSection = currentSection === sections.length - 1;
+            const isLastQuestion = currentQuestionIndex === questions[sections[currentSection]].length - 1;
+            
+            if (isLastSection && isLastQuestion) {
+                nextBtn.innerHTML = 'Submit Assessment <i class="fa-solid fa-check ml-2"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-arrow-right ml-2"></i>';
+            }
+        }
+
+        // Select option
+        function selectOption(index) {
+            const section = sections[currentSection];
+            if (answers[section][currentQuestionIndex] !== null) return; // Already answered
+
+            answers[section][currentQuestionIndex] = index;
+            
+            // Update score if correct
+            if (index === questions[section][currentQuestionIndex].correct) {
+                score += 10;
+            }
+
+            updateScore();
+            loadQuestion(); // Reload to show explanation and correct/incorrect styling
+        }
+
+        // Update score display
+        function updateScore() {
+            liveScoreEl.textContent = score;
+        }
+
+        // Update progress steps
+        function updateProgressSteps() {
+            const steps = [step1, step2, step3, step4];
+            
+            steps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                
+                if (index < currentSection) {
+                    step.classList.add('completed');
+                } else if (index === currentSection) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        // Navigation
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+            } else if (currentSection > 0) {
+                currentSection--;
+                currentQuestionIndex = questions[sections[currentSection]].length - 1;
+            }
+            loadQuestion();
+            updateProgressSteps();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const section = sections[currentSection];
+            const isLastSection = currentSection === sections.length - 1;
+            const isLastQuestion = currentQuestionIndex === questions[section].length - 1;
+
+            // Check if current question is answered
+            if (answers[section][currentQuestionIndex] === null) {
+                alert('Please answer the current question before proceeding.');
+                return;
+            }
+
+            if (isLastSection && isLastQuestion) {
+                // Submit assessment
+                showResults();
+            } else if (isLastQuestion) {
+                // Move to next section
+                currentSection++;
+                currentQuestionIndex = 0;
+                loadQuestion();
+                updateProgressSteps();
+            } else {
+                // Move to next question in same section
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+        });
+
+        // Show results
+        function showResults() {
+            resultsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            // Calculate scores per section
+            const grammarCorrect = answers.grammar.filter((ans, idx) => ans === questions.grammar[idx].correct).length;
+            const vocabCorrect = answers.vocabulary.filter((ans, idx) => ans === questions.vocabulary[idx].correct).length;
+            const compCorrect = answers.comprehension.filter((ans, idx) => ans === questions.comprehension[idx].correct).length;
+            const speakCorrect = answers.speaking.filter((ans, idx) => ans === questions.speaking[idx].correct).length;
+
+            const grammarPercent = (grammarCorrect / questions.grammar.length) * 100;
+            const vocabPercent = (vocabCorrect / questions.vocabulary.length) * 100;
+            const compPercent = (compCorrect / questions.comprehension.length) * 100;
+            const speakPercent = (speakCorrect / questions.speaking.length) * 100;
+
+            const totalPossible = (questions.grammar.length + questions.vocabulary.length + 
+                                  questions.comprehension.length + questions.speaking.length) * 10;
+            const overallPercent = (score / totalPossible) * 100;
+
+            // Determine CEFR level
+            let cefrLevel = '';
+            if (overallPercent >= 90) cefrLevel = 'C2 (Proficient)';
+            else if (overallPercent >= 80) cefrLevel = 'C1 (Advanced)';
+            else if (overallPercent >= 65) cefrLevel = 'B2 (Upper Intermediate)';
+            else if (overallPercent >= 50) cefrLevel = 'B1 (Intermediate)';
+            else if (overallPercent >= 35) cefrLevel = 'A2 (Elementary)';
+            else cefrLevel = 'A1 (Beginner)';
+
+            // Update text values
+            document.getElementById('overall-percentage').textContent = `${Math.round(overallPercent)}%`;
+            document.getElementById('cefr-level').textContent = cefrLevel;
+
+            document.getElementById('grammar-score').textContent = `${grammarCorrect}/${questions.grammar.length}`;
+            document.getElementById('vocab-score').textContent = `${vocabCorrect}/${questions.vocabulary.length}`;
+            document.getElementById('comp-score').textContent = `${compCorrect}/${questions.comprehension.length}`;
+            document.getElementById('speak-score').textContent = `${speakCorrect}/${questions.speaking.length}`;
+
+            document.getElementById('grammar-percent').textContent = `${Math.round(grammarPercent)}%`;
+            document.getElementById('vocab-percent').textContent = `${Math.round(vocabPercent)}%`;
+            document.getElementById('comp-percent').textContent = `${Math.round(compPercent)}%`;
+            document.getElementById('speak-percent').textContent = `${Math.round(speakPercent)}%`;
+
+            // Set skill bar widths
+            document.getElementById('grammar-skill').style.width = `${grammarPercent}%`;
+            document.getElementById('vocab-skill').style.width = `${vocabPercent}%`;
+            document.getElementById('comp-skill').style.width = `${compPercent}%`;
+            document.getElementById('speak-skill').style.width = `${speakPercent}%`;
+
+            // Set feedback messages
+            document.getElementById('grammar-feedback').textContent = 
+                grammarPercent >= 80 ? 'Excellent grasp of grammar rules!' :
+                grammarPercent >= 60 ? 'Good foundation, needs refinement' :
+                'Requires fundamental grammar training';
+
+            document.getElementById('vocab-feedback').textContent = 
+                vocabPercent >= 80 ? 'Rich vocabulary repertoire!' :
+                vocabPercent >= 60 ? 'Decent vocabulary, can expand further' :
+                'Vocabulary building recommended';
+
+            document.getElementById('comp-feedback').textContent = 
+                compPercent >= 80 ? 'Excellent comprehension skills!' :
+                compPercent >= 60 ? 'Good understanding, practice more' :
+                'Needs improvement in comprehension';
+
+            document.getElementById('speak-feedback').textContent = 
+                speakPercent >= 80 ? 'Natural conversationalist!' :
+                speakPercent >= 60 ? 'Good speaking foundation' :
+                'Speaking practice recommended';
+
+            // Generate recommendations
+            const recommendations = document.getElementById('recommendations');
+            recommendations.innerHTML = '';
+
+            const recs = [];
+
+            if (grammarPercent < 60) {
+                recs.push('• Enroll in our Grammar Foundation Course to build strong basics');
+            }
+            if (vocabPercent < 60) {
+                recs.push('• Join Vocabulary Building workshops to expand your word power');
+            }
+            if (compPercent < 60) {
+                recs.push('• Take our Reading Comprehension program for better understanding');
+            }
+            if (speakPercent < 60) {
+                recs.push('• Practice with our Spoken English sessions for fluency');
+            }
+
+            if (recs.length === 0) {
+                recs.push('• You\'re doing great! Consider our Advanced Communication Masterclass');
+                recs.push('• Join our Public Speaking workshop to polish your skills further');
+            } else {
+                recs.push('• Book a free demo session for personalized guidance');
+            }
+
+            recs.forEach(rec => {
+                const p = document.createElement('p');
+                p.className = 'text-slate-300';
+                p.innerHTML = rec;
+                recommendations.appendChild(p);
+            });
+
+            // Create score chart
+            const ctx = document.getElementById('score-chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Correct', 'Incorrect'],
+                    datasets: [{
+                        data: [score / 10, (totalPossible / 10) - (score / 10)],
+                        backgroundColor: ['#d4af37', 'rgba(255,255,255,0.1)'],
+                        borderColor: 'transparent',
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        // Close results modal
+        function closeResults() {
+            resultsModal.style.display = 'none';
+        }
+
+        // Retake assessment
+        function retakeAssessment() {
+            closeResults();
+            resetAssessment();
+            initAssessment();
+        }
+
         // Make functions global
         window.openAssessment = openAssessment;
         window.closeAssessment = closeAssessment;
