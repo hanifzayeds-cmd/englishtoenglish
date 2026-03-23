@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>E2E Spoken Institution | Extraordinary English</title>
     
-    <!-- Tailwind CSS - Working CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,15 +15,12 @@
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     
-    <!-- EmailJS for sending emails -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
-    <!-- Referrer policy for Google Sign-In -->
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <script>
@@ -50,6 +46,13 @@
     </script>
 
     <style>
+        /* Strict Mobile Scroll Lock */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
         /* Premium Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.03);
@@ -281,114 +284,455 @@
 </head>
 <body class="bg-brand-darker text-slate-200 font-sans overflow-x-hidden w-full relative">
 
-    <!-- Welcome Toast Notification -->
-    <div id="welcome-toast" class="welcome-toast">
-        <div class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-2xl"></i>
-            <div>
-                <p class="font-bold" id="toast-message">Welcome to E2E!</p>
-                <p class="text-sm opacity-90" id="toast-submessage">Your journey begins now</p>
+    <div class="w-full overflow-x-hidden relative">
+
+        <div id="welcome-toast" class="welcome-toast">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-check text-2xl"></i>
+                <div>
+                    <p class="font-bold" id="toast-message">Welcome to E2E!</p>
+                    <p class="text-sm opacity-90" id="toast-submessage">Your journey begins now</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <nav class="fixed w-full z-50 transition-all duration-300 glass" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                
-                <div class="flex items-center gap-2 sm:gap-3 cursor-pointer flex-1 min-w-0 pr-2">
-                    <img src="e2e logo.png" alt="E2E Logo" class="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 flex-shrink-0 rounded-full border-2 border-brand-primary shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+        <nav class="fixed w-full z-50 transition-all duration-300 glass" id="navbar">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-24">
                     
-                    <div class="flex flex-col min-w-0">
-                        <span class="font-heading font-bold text-sm min-[380px]:text-base sm:text-xl md:text-2xl tracking-tight text-white leading-tight break-words whitespace-normal">E2E Spoken Institution</span>
-                        <span class="text-[0.55rem] sm:text-[0.7rem] text-brand-primary uppercase tracking-widest font-semibold mt-0.5 block truncate">Extraordinary English</span>
+                    <div class="flex items-center gap-2 sm:gap-3 cursor-pointer flex-1 min-w-0 pr-2">
+                        <img src="e2e logo.png" alt="E2E Logo" class="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 flex-shrink-0 rounded-full border-2 border-brand-primary shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                        
+                        <div class="flex flex-col min-w-0">
+                            <span class="font-heading font-bold text-sm min-[380px]:text-base sm:text-xl md:text-2xl tracking-tight text-white leading-tight break-words whitespace-normal">E2E Spoken Institution</span>
+                            <span class="text-[0.55rem] sm:text-[0.7rem] text-brand-primary uppercase tracking-widest font-semibold mt-0.5 block truncate">Extraordinary English</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="hidden md:flex space-x-8 items-center flex-shrink-0">
-                    <a href="#home" class="text-slate-300 hover:text-brand-primary transition font-medium">Home</a>
-                    <a href="#about" class="text-slate-300 hover:text-brand-primary transition font-medium">About</a>
-                    <a href="#courses" class="text-slate-300 hover:text-brand-primary transition font-medium">Courses</a>
-                    <a href="#features" class="text-slate-300 hover:text-brand-primary transition font-medium">Features</a>
-                    <a href="#" onclick="openAssessment(); return false;" class="text-slate-300 hover:text-brand-primary transition font-medium">Assessment</a>
                     
-                    <!-- Auth Buttons (will be updated based on login state) -->
-                    <div id="auth-buttons-desktop">
-                        <button onclick="openAuthModal()" class="bg-brand-primary text-brand-darker px-6 py-2 rounded-full font-bold hover:bg-brand-primaryHover transition">
-                            Login / Sign Up
+                    <div class="hidden md:flex space-x-8 items-center flex-shrink-0">
+                        <a href="#home" class="text-slate-300 hover:text-brand-primary transition font-medium">Home</a>
+                        <a href="#about" class="text-slate-300 hover:text-brand-primary transition font-medium">About</a>
+                        <a href="#courses" class="text-slate-300 hover:text-brand-primary transition font-medium">Courses</a>
+                        <a href="#features" class="text-slate-300 hover:text-brand-primary transition font-medium">Features</a>
+                        <a href="#" onclick="openAssessment(); return false;" class="text-slate-300 hover:text-brand-primary transition font-medium">Assessment</a>
+                        
+                        <div id="auth-buttons-desktop">
+                            <button onclick="openAuthModal()" class="bg-brand-primary text-brand-darker px-6 py-2 rounded-full font-bold hover:bg-brand-primaryHover transition">
+                                Login / Sign Up
+                            </button>
+                        </div>
+                        
+                        <div id="user-profile-desktop" class="hidden items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-primary/20 border-2 border-brand-primary flex items-center justify-center">
+                                <i class="fa-regular fa-user text-brand-primary"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-sm font-bold text-white" id="user-name">User</p>
+                                <button onclick="logout()" class="text-xs text-brand-primary hover:underline">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:hidden flex items-center justify-end flex-shrink-0 ml-2 gap-2">
+                        <button onclick="openAuthModal()" class="text-brand-primary text-xl p-2">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <button id="mobile-menu-button" class="text-brand-primary text-2xl focus:outline-none p-2">
+                            <i class="fa-solid fa-bars"></i>
                         </button>
                     </div>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden bg-brand-dark border-t border-brand-primary/20 absolute w-full left-0">
+                <div class="px-4 pt-2 pb-6 space-y-3 shadow-2xl">
+                    <a href="#home" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Home</a>
+                    <a href="#about" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">About</a>
+                    <a href="#courses" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Courses</a>
+                    <a href="#features" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Features</a>
+                    <a href="#" onclick="openAssessment(); return false;" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Assessment</a>
+                    <div id="user-profile-mobile" class="hidden border-t border-white/10 pt-3 mt-3">
+                        <div class="flex items-center gap-3 px-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-primary/20 border-2 border-brand-primary flex items-center justify-center">
+                                <i class="fa-regular fa-user text-brand-primary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-white" id="user-name-mobile">User</p>
+                                <p class="text-xs text-slate-400" id="user-email-mobile"></p>
+                            </div>
+                        </div>
+                        <button onclick="logout()" class="w-full text-left px-3 py-2 mt-2 text-brand-primary hover:bg-white/5 rounded-lg">
+                            <i class="fa-solid fa-sign-out-alt mr-2"></i> Logout
+                        </button>
+                    </div>
+                    <a href="#contact" class="block w-full text-center mt-4 bg-brand-primary text-brand-darker px-6 py-3 rounded-full font-bold">Book Free Demo</a>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden hero-gradient">
+            <div class="orb bg-[#5c1c9e] w-[30rem] h-[30rem] top-0 left-[-10%]"></div>
+            <div class="orb bg-brand-primary w-[20rem] h-[20rem] bottom-0 right-[-5%]" style="animation-delay: -3s; opacity: 0.2;"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-duration="1200">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-brand-primary font-semibold text-sm mb-6 backdrop-blur-sm">
+                        <i class="fa-solid fa-star mr-2"></i> Excellent Beginnings
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
+                        Achieve <span class="text-gradient">Extraordinary</span> Fluency
+                    </h1>
+                    <p class="text-lg text-slate-300 mb-8 leading-relaxed max-w-lg">
+                        Master the art of spoken English with personalized training from industry experts. Elevate your career, boost your confidence, and speak to the world.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="bg-brand-primary text-brand-darker text-center px-8 py-4 rounded-full font-bold text-lg transition transform hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(212,175,55,0.5)]">
+                            Start Your Journey
+                        </a>
+                        <a href="#" onclick="openAssessment(); return false;" class="glass text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition flex items-center justify-center gap-2">
+                            Take Free Assessment <i class="fa-solid fa-arrow-right text-brand-primary"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" data-aos-duration="1200" class="relative mt-10 md:mt-0 tilt-card">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professionals Learning" class="rounded-3xl shadow-[0_0_40px_rgba(212,175,55,0.2)] border border-brand-primary/30 relative z-10">
                     
-                    <div id="user-profile-desktop" class="hidden items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand-primary/20 border-2 border-brand-primary flex items-center justify-center">
-                            <i class="fa-regular fa-user text-brand-primary"></i>
-                        </div>
-                        <div class="text-left">
-                            <p class="text-sm font-bold text-white" id="user-name">User</p>
-                            <button onclick="logout()" class="text-xs text-brand-primary hover:underline">Logout</button>
+                    <div class="absolute -top-6 -left-6 glass p-5 rounded-2xl shadow-xl z-20 animate-[bounce_5s_infinite]">
+                        <i class="fa-solid fa-microphone-lines text-brand-primary text-3xl"></i>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 glass p-5 rounded-2xl shadow-xl z-20 animate-[bounce_4s_infinite]" style="animation-delay: 1s;">
+                        <div class="text-center">
+                            <span class="block text-brand-primary font-bold text-2xl">100%</span>
+                            <span class="text-xs font-semibold tracking-wider">SUCCESS RATE</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="md:hidden flex items-center justify-end flex-shrink-0 ml-2 gap-2">
-                    <button onclick="openAuthModal()" class="text-brand-primary text-xl p-2">
-                        <i class="fa-regular fa-user"></i>
-                    </button>
-                    <button id="mobile-menu-button" class="text-brand-primary text-2xl focus:outline-none p-2">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
+        <section class="py-12 border-y border-brand-primary/20 bg-brand-dark relative z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-brand-primary/20">
+                    <div data-aos="zoom-in" data-aos-delay="0">
+                        <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">50+</h4>
+                        <p class="text-slate-400 text-sm uppercase tracking-widest">Expert Trainers</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="100">
+                        <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">10k+</h4>
+                        <p class="text-slate-400 text-sm uppercase tracking-widest">Happy Students</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="200">
+                        <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">15+</h4>
+                        <p class="text-slate-400 text-sm uppercase tracking-widest">Custom Courses</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="300">
+                        <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">24/7</h4>
+                        <p class="text-slate-400 text-sm uppercase tracking-widest">Student Support</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="mobile-menu" class="md:hidden bg-brand-dark border-t border-brand-primary/20 absolute w-full left-0">
-            <div class="px-4 pt-2 pb-6 space-y-3 shadow-2xl">
-                <a href="#home" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Home</a>
-                <a href="#about" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">About</a>
-                <a href="#courses" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Courses</a>
-                <a href="#features" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Features</a>
-                <a href="#" onclick="openAssessment(); return false;" class="block px-3 py-2 text-white hover:text-brand-primary font-medium">Assessment</a>
-                <div id="user-profile-mobile" class="hidden border-t border-white/10 pt-3 mt-3">
-                    <div class="flex items-center gap-3 px-3">
-                        <div class="w-10 h-10 rounded-full bg-brand-primary/20 border-2 border-brand-primary flex items-center justify-center">
-                            <i class="fa-regular fa-user text-brand-primary"></i>
+        <section id="about" class="py-24 bg-brand-darker relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#d4af37 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Discover <span class="text-gradient">Our Purpose</span></h2>
+                    <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <div class="glass p-10 rounded-3xl tilt-card hover:border-brand-primary/50 transition-colors duration-500" data-aos="fade-right">
+                        <div class="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center mb-8 border border-brand-primary/30">
+                            <i class="fa-regular fa-eye text-3xl text-brand-primary"></i>
                         </div>
+                        <h3 class="text-3xl font-heading font-bold text-white mb-4">Our Vision</h3>
+                        <p class="text-slate-300 leading-relaxed text-lg">
+                            To create a global platform where individuals of all ages can master the art of spoken English, empowering them to achieve fluency, expand their vocabulary, and enhance their communication skills for a brighter career and enriched personal life.
+                        </p>
+                    </div>
+
+                    <div class="glass p-10 rounded-3xl tilt-card hover:border-brand-primary/50 transition-colors duration-500" data-aos="fade-left">
+                        <div class="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center mb-8 border border-brand-primary/30">
+                            <i class="fa-solid fa-bullseye text-3xl text-brand-primary"></i>
+                        </div>
+                        <h3 class="text-3xl font-heading font-bold text-white mb-4">Our Mission</h3>
+                        <p class="text-slate-300 leading-relaxed text-lg">
+                            To provide high-quality, learner-centric training that focuses on language proficiency and integrates essential skills for personal and professional growth, ensuring that our students feel equipped to navigate any communication challenge with poise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-24 bg-brand-dark relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-brand-primary font-semibold tracking-widest uppercase text-sm mb-2 block">Why Stand Out?</span>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">The E2E <span class="text-gradient">Advantage</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-solid fa-chalkboard-user text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Expert Trainers</h3>
+                        <p class="text-slate-400">Learn from seasoned professionals dedicated to refining your pronunciation and grammar.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-clock-rotate-left text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Flexible Learning</h3>
+                        <p class="text-slate-400">Study at your own pace with schedules designed to fit busy professionals and students.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fa-solid fa-user-graduate text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Personalized Attention</h3>
+                        <p class="text-slate-400">Small batch sizes guarantee that your individual learning needs and weaknesses are addressed.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fa-solid fa-users-rays text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Interactive Sessions</h3>
+                        <p class="text-slate-400">Engage in dynamic group discussions, role-plays, and real-time conversational practice.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="500">
+                        <i class="fa-solid fa-laptop-file text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Practical Approach</h3>
+                        <p class="text-slate-400">Focus on real-world applications so you are ready for interviews, meetings, and global travel.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="600">
+                        <i class="fa-solid fa-briefcase text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Career Guidance</h3>
+                        <p class="text-slate-400">Extensive support in resume building, interview skills, and workplace etiquette.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="py-24 bg-brand-darker">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Elite <span class="text-gradient">Programs</span></h2>
+                    <p class="text-slate-400">Curriculums meticulously tailored for every stage of life.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="glass rounded-3xl overflow-hidden shadow-2xl border-t border-brand-primary/30 group" data-aos="fade-up">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Adults Learning" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700 group-hover:opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-dark/50 to-transparent"></div>
+                            <h3 class="absolute bottom-6 left-8 text-4xl font-heading font-bold text-white drop-shadow-lg">For Adults</h3>
+                        </div>
+                        <div class="p-8 lg:p-10">
+                            <ul class="space-y-5">
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Spoken English Masterclass</span><span class="text-slate-400 text-sm">Beginner, Intermediate & Advanced levels.</span></div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Corporate & Business English</span><span class="text-slate-400 text-sm">Perfecting workplace communication & emails.</span></div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Placement Preparation</span><span class="text-slate-400 text-sm">Interview mastery and Soft Skills development.</span></div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Faculty Development</span><span class="text-slate-400 text-sm">Advanced pedagogical communication skills.</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-3xl overflow-hidden shadow-2xl border-t border-brand-primary/30 group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Kids Learning" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700 group-hover:opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-dark/50 to-transparent"></div>
+                            <h3 class="absolute bottom-6 left-8 text-4xl font-heading font-bold text-white drop-shadow-lg">For Kids</h3>
+                        </div>
+                        <div class="p-8 lg:p-10">
+                            <ul class="space-y-5">
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Foundation & Phonics</span><span class="text-slate-400 text-sm">Building strong roots with basic grammar rules.</span></div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Vocabulary Expansion</span><span class="text-slate-400 text-sm">Fun and engaging spoken English modules.</span></div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Public Speaking</span><span class="text-slate-400 text-sm">Overcoming stage fright and building confidence.</span></div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
+                                    <div><span class="font-bold text-white block">Creative Development</span><span class="text-slate-400 text-sm">Storytelling, creative writing, and reading practice.</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-brand-dark relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Student <span class="text-gradient">Success</span></h2>
+                    <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass p-8 rounded-2xl relative" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-solid fa-quote-left text-4xl text-brand-primary/30 absolute top-6 right-6"></i>
+                        <div class="flex items-center gap-2 mb-4 text-brand-primary">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic mb-6">"E2E transformed my confidence. The personalized attention I received helped me clear my placement interviews with ease."</p>
+                        <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                            <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold text-brand-dark">R</div>
+                            <div>
+                                <p class="font-bold text-white text-sm">Rahul S.</p>
+                                <p class="text-xs text-brand-primary">Corporate Course</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl relative border border-brand-primary/40 transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-quote-left text-4xl text-brand-primary/30 absolute top-6 right-6"></i>
+                        <div class="flex items-center gap-2 mb-4 text-brand-primary">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic mb-6">"My daughter loves the kids program! Her vocabulary has improved immensely, and she even tells stories in English now."</p>
+                        <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                            <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold text-brand-dark">P</div>
+                            <div>
+                                <p class="font-bold text-white text-sm">Priya M.</p>
+                                <p class="text-xs text-brand-primary">Kids Parent</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl relative" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fa-solid fa-quote-left text-4xl text-brand-primary/30 absolute top-6 right-6"></i>
+                        <div class="flex items-center gap-2 mb-4 text-brand-primary">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic mb-6">"The trainers are highly professional. The flexible timings allowed me to manage my job while upgrading my communication skills."</p>
+                        <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                            <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold text-brand-dark">K</div>
+                            <div>
+                                <p class="font-bold text-white text-sm">Karthik V.</p>
+                                <p class="text-xs text-brand-primary">Advanced Spoken</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="relative pt-24 pb-12 hero-gradient border-t border-brand-primary/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 mb-16 items-center">
+                    
+                    <div data-aos="fade-right">
+                        <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-6">Let's <span class="text-brand-primary">Connect</span></h2>
+                        <p class="text-slate-300 mb-10 text-lg">Your extraordinary journey begins with a single hello. Reach out to us to schedule your comprehensive free demo session today.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6 glass p-5 rounded-2xl hover:border-brand-primary/50 transition duration-300">
+                                <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl border border-brand-primary/30">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="w-full min-w-0 pr-2">
+                                    <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">Email Us</p>
+                                    <a href="mailto:e2espokenacademy@gmail.com" class="text-white font-bold text-lg hover:text-brand-primary transition break-all">e2espokenacademy@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6 glass p-5 rounded-2xl hover:border-brand-primary/50 transition duration-300">
+                                <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl border border-brand-primary/30">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">Call Us (24/7)</p>
+                                    <a href="tel:+919360225859" class="text-white font-bold text-lg hover:text-brand-primary transition">+91 93602 25859</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6 glass p-5 rounded-2xl hover:border-brand-primary/50 transition duration-300">
+                                <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl border border-brand-primary/30">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">Our Location</p>
+                                    <p class="text-white font-bold text-lg">Dindigul, Tamil Nadu</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass p-8 md:p-10 rounded-3xl border border-brand-primary/30 relative overflow-hidden" data-aos="fade-left">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl"></div>
+                        <h3 class="text-3xl font-heading font-bold text-white mb-2">Book Free Demo</h3>
+                        <p class="text-slate-400 mb-8">Fill out the form and our experts will contact you shortly.</p>
+                        
+                        <form class="space-y-5 relative z-10">
+                            <input type="text" placeholder="Full Name" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <input type="email" placeholder="Email Address" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
+                                <input type="tel" placeholder="Phone Number" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
+                            </div>
+                            <select class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-slate-400 focus:outline-none focus:border-brand-primary transition appearance-none">
+                                <option value="" disabled selected>Select Course Interest</option>
+                                <option value="adults">Adults - Spoken English</option>
+                                <option value="corporate">Business / Corporate</option>
+                                <option value="kids">Kids Programs</option>
+                            </select>
+                            <textarea rows="3" placeholder="Any specific requirements?" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500"></textarea>
+                            
+                            <button type="submit" class="w-full bg-brand-primary hover:bg-brand-primaryHover text-brand-darker font-bold text-lg py-4 rounded-xl transition transform hover:-translate-y-1 shadow-[0_5px_20px_rgba(212,175,55,0.4)]">
+                                Request Demo Class
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+                    <div class="flex items-center gap-3">
+                        <img src="e2e logo.png" alt="E2E Logo" class="h-10 w-10 rounded-full border border-brand-primary">
                         <div>
-                            <p class="text-sm font-bold text-white" id="user-name-mobile">User</p>
-                            <p class="text-xs text-slate-400" id="user-email-mobile"></p>
+                            <span class="font-heading font-bold text-xl text-white block leading-none">E2E Spoken Institution</span>
                         </div>
                     </div>
-                    <button onclick="logout()" class="w-full text-left px-3 py-2 mt-2 text-brand-primary hover:bg-white/5 rounded-lg">
-                        <i class="fa-solid fa-sign-out-alt mr-2"></i> Logout
-                    </button>
-                </div>
-                <a href="#contact" class="block w-full text-center mt-4 bg-brand-primary text-brand-darker px-6 py-3 rounded-full font-bold">Book Free Demo</a>
-            </div>
-        </div>
-    </nav>
+                    
+                    <div class="flex space-x-6">
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-darker transition duration-300 hover:-translate-y-1"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-darker transition duration-300 hover:-translate-y-1"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-darker transition duration-300 hover:-translate-y-1"><i class="fa-brands fa-youtube text-lg"></i></a>
+                    </div>
 
-    <!-- Auth Modal -->
-    <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[150] hidden items-center justify-center p-4">
+                    <p class="text-slate-500 text-sm">© 2026 E2E Spoken Institution.<br class="md:hidden"> All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+
+    </div> <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[150] hidden items-center justify-center p-4">
         <div class="glass max-w-md w-full rounded-3xl border border-brand-primary/30 p-8 relative" data-aos="zoom-in">
-            <!-- Close Button -->
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl">
                 <i class="fa-regular fa-circle-xmark"></i>
             </button>
 
-            <!-- Logo -->
             <div class="text-center mb-6">
                 <img src="e2e logo.png" alt="E2E Logo" class="h-16 w-16 mx-auto rounded-full border-2 border-brand-primary mb-3">
                 <h2 class="text-2xl font-heading font-bold text-white">Welcome to <span class="text-gradient">E2E</span></h2>
                 <p class="text-slate-400 text-sm">Join our community of extraordinary learners</p>
             </div>
 
-            <!-- Auth Toggle -->
             <div class="flex justify-center gap-8 mb-8 border-b border-white/10 pb-4">
                 <button id="login-toggle" class="auth-toggle active text-white font-medium pb-2" onclick="toggleAuth('login')">Login</button>
                 <button id="signup-toggle" class="auth-toggle text-slate-400 font-medium pb-2" onclick="toggleAuth('signup')">Sign Up</button>
             </div>
 
-            <!-- Login Form -->
             <div id="login-form" class="space-y-4">
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Email</label>
@@ -402,7 +746,6 @@
                     Login
                 </button>
                 
-                <!-- Divider -->
                 <div class="relative my-6">
                     <div class="absolute inset-0 flex items-center">
                         <div class="w-full border-t border-white/10"></div>
@@ -412,14 +755,12 @@
                     </div>
                 </div>
 
-                <!-- Google Sign In -->
                 <button onclick="googleSignIn()" class="google-btn w-full flex items-center justify-center gap-3 bg-white text-gray-700 font-bold py-3 rounded-xl transition transform hover:-translate-y-1">
                     <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5">
                     Sign in with Google
                 </button>
             </div>
 
-            <!-- Signup Form -->
             <div id="signup-form" class="space-y-4 hidden">
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Full Name</label>
@@ -441,7 +782,6 @@
                     Create Account
                 </button>
 
-                <!-- Divider -->
                 <div class="relative my-6">
                     <div class="absolute inset-0 flex items-center">
                         <div class="w-full border-t border-white/10"></div>
@@ -451,28 +791,23 @@
                     </div>
                 </div>
 
-                <!-- Google Sign Up -->
                 <button onclick="googleSignIn()" class="google-btn w-full flex items-center justify-center gap-3 bg-white text-gray-700 font-bold py-3 rounded-xl transition transform hover:-translate-y-1">
                     <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5">
                     Sign up with Google
                 </button>
             </div>
 
-            <!-- Loading Spinner (hidden by default) -->
             <div id="auth-loading" class="hidden mt-4 text-center">
                 <div class="spinner mx-auto"></div>
                 <p class="text-sm text-slate-400 mt-2">Processing...</p>
             </div>
 
-            <!-- Error Message -->
             <div id="auth-error" class="mt-4 text-center text-red-400 text-sm hidden"></div>
         </div>
     </div>
 
-    <!-- Assessment Modal (Full Screen) -->
     <div id="assessment-modal" class="fixed inset-0 bg-brand-darker z-[100] hidden overflow-y-auto" style="display: none;">
         <div class="min-h-screen px-4 py-8">
-            <!-- Modal Header -->
             <div class="max-w-7xl mx-auto mb-8 flex justify-between items-center">
                 <div class="flex items-center gap-4">
                     <img src="e2e logo.png" alt="E2E Logo" class="h-12 w-12 rounded-full border-2 border-brand-primary">
@@ -486,12 +821,9 @@
                 </button>
             </div>
 
-            <!-- Main Assessment Container -->
             <div class="max-w-7xl mx-auto">
                 <div class="grid lg:grid-cols-3 gap-8">
-                    <!-- Left Panel - Assessment Info & Progress -->
                     <div class="lg:col-span-1 space-y-6" data-aos="fade-right">
-                        <!-- Assessment Card -->
                         <div class="glass p-8 rounded-3xl border border-brand-primary/20 assessment-card">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center">
@@ -503,7 +835,6 @@
                                 </div>
                             </div>
 
-                            <!-- Progress Steps -->
                             <div class="space-y-6">
                                 <div class="flex items-center gap-4">
                                     <div class="progress-step active" id="modal-step1">1</div>
@@ -535,7 +866,6 @@
                                 </div>
                             </div>
 
-                            <!-- Time Info -->
                             <div class="mt-8 pt-6 border-t border-white/10">
                                 <div class="flex justify-between items-center">
                                     <span class="text-slate-400">Estimated Time</span>
@@ -548,7 +878,6 @@
                             </div>
                         </div>
 
-                        <!-- Why Take This Assessment -->
                         <div class="glass p-6 rounded-3xl border border-brand-primary/20">
                             <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
                                 <i class="fa-regular fa-circle-check text-brand-primary"></i>
@@ -575,10 +904,8 @@
                         </div>
                     </div>
 
-                    <!-- Right Panel - Assessment Questions -->
                     <div class="lg:col-span-2" data-aos="fade-left">
                         <div class="glass p-8 rounded-3xl border border-brand-primary/20 assessment-card">
-                            <!-- Question Header -->
                             <div class="flex justify-between items-center mb-8">
                                 <div>
                                     <span class="text-brand-primary text-sm font-semibold" id="modal-section-name">Grammar & Structure</span>
@@ -590,12 +917,9 @@
                                 </div>
                             </div>
 
-                            <!-- Question Container -->
                             <div id="modal-question-container">
-                                <!-- Questions will be dynamically inserted here -->
-                            </div>
+                                </div>
 
-                            <!-- Navigation Buttons -->
                             <div class="flex justify-between items-center mt-8 pt-6 border-t border-white/10">
                                 <button id="modal-prev-btn" class="glass px-6 py-3 rounded-xl text-slate-400 hover:text-white transition disabled:opacity-30 disabled:cursor-not-allowed" disabled>
                                     <i class="fa-solid fa-arrow-left mr-2"></i> Previous
@@ -606,7 +930,6 @@
                             </div>
                         </div>
 
-                        <!-- Pro Tip -->
                         <div class="mt-6 glass p-4 rounded-xl border border-brand-primary/20">
                             <div class="flex items-start gap-3">
                                 <i class="fa-regular fa-lightbulb text-brand-primary text-xl"></i>
@@ -621,7 +944,6 @@
         </div>
     </div>
 
-    <!-- Results Modal (Hidden by default) -->
     <div id="results-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] hidden items-center justify-center p-4">
         <div class="glass max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-3xl border border-brand-primary/30 p-8" data-aos="zoom-in">
             <div class="flex justify-between items-center mb-6">
@@ -631,7 +953,6 @@
                 </button>
             </div>
 
-            <!-- Overall Score -->
             <div class="text-center mb-8">
                 <div class="inline-block relative">
                     <canvas id="score-chart" width="200" height="200"></canvas>
@@ -646,7 +967,6 @@
                 </div>
             </div>
 
-            <!-- Skill Breakdown -->
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div class="glass p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
@@ -709,18 +1029,15 @@
                 </div>
             </div>
 
-            <!-- Recommendations -->
             <div class="glass p-6 rounded-2xl mb-8">
                 <h3 class="text-xl font-heading font-bold text-white mb-4 flex items-center gap-2">
                     <i class="fa-regular fa-star text-brand-primary"></i>
                     Personalized Recommendations
                 </h3>
                 <div id="recommendations" class="space-y-3">
-                    <!-- Dynamic recommendations -->
-                </div>
+                    </div>
             </div>
 
-            <!-- Call to Action -->
             <div class="text-center">
                 <p class="text-slate-300 mb-4">Ready to start your journey to fluency?</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -734,352 +1051,6 @@
             </div>
         </div>
     </div>
-
-    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden hero-gradient">
-        <div class="orb bg-[#5c1c9e] w-[30rem] h-[30rem] top-0 left-[-10%]"></div>
-        <div class="orb bg-brand-primary w-[20rem] h-[20rem] bottom-0 right-[-5%]" style="animation-delay: -3s; opacity: 0.2;"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right" data-aos-duration="1200">
-                <div class="inline-block px-4 py-1.5 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-brand-primary font-semibold text-sm mb-6 backdrop-blur-sm">
-                    <i class="fa-solid fa-star mr-2"></i> Excellent Beginnings
-                </div>
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
-                    Achieve <span class="text-gradient">Extraordinary</span> Fluency
-                </h1>
-                <p class="text-lg text-slate-300 mb-8 leading-relaxed max-w-lg">
-                    Master the art of spoken English with personalized training from industry experts. Elevate your career, boost your confidence, and speak to the world.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="bg-brand-primary text-brand-darker text-center px-8 py-4 rounded-full font-bold text-lg transition transform hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(212,175,55,0.5)]">
-                        Start Your Journey
-                    </a>
-                    <a href="#" onclick="openAssessment(); return false;" class="glass text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition flex items-center justify-center gap-2">
-                        Take Free Assessment <i class="fa-solid fa-arrow-right text-brand-primary"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div data-aos="fade-left" data-aos-duration="1200" class="relative mt-10 md:mt-0 tilt-card">
-                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professionals Learning" class="rounded-3xl shadow-[0_0_40px_rgba(212,175,55,0.2)] border border-brand-primary/30 relative z-10">
-                
-                <div class="absolute -top-6 -left-6 glass p-5 rounded-2xl shadow-xl z-20 animate-[bounce_5s_infinite]">
-                    <i class="fa-solid fa-microphone-lines text-brand-primary text-3xl"></i>
-                </div>
-                <div class="absolute -bottom-6 -right-6 glass p-5 rounded-2xl shadow-xl z-20 animate-[bounce_4s_infinite]" style="animation-delay: 1s;">
-                    <div class="text-center">
-                        <span class="block text-brand-primary font-bold text-2xl">100%</span>
-                        <span class="text-xs font-semibold tracking-wider">SUCCESS RATE</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-12 border-y border-brand-primary/20 bg-brand-dark relative z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-brand-primary/20">
-                <div data-aos="zoom-in" data-aos-delay="0">
-                    <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">50+</h4>
-                    <p class="text-slate-400 text-sm uppercase tracking-widest">Expert Trainers</p>
-                </div>
-                <div data-aos="zoom-in" data-aos-delay="100">
-                    <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">10k+</h4>
-                    <p class="text-slate-400 text-sm uppercase tracking-widest">Happy Students</p>
-                </div>
-                <div data-aos="zoom-in" data-aos-delay="200">
-                    <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">15+</h4>
-                    <p class="text-slate-400 text-sm uppercase tracking-widest">Custom Courses</p>
-                </div>
-                <div data-aos="zoom-in" data-aos-delay="300">
-                    <h4 class="text-4xl font-heading font-bold text-brand-primary mb-2">24/7</h4>
-                    <p class="text-slate-400 text-sm uppercase tracking-widest">Student Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-24 bg-brand-darker relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#d4af37 1px, transparent 1px); background-size: 40px 40px;"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Discover <span class="text-gradient">Our Purpose</span></h2>
-                <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
-                <div class="glass p-10 rounded-3xl tilt-card hover:border-brand-primary/50 transition-colors duration-500" data-aos="fade-right">
-                    <div class="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center mb-8 border border-brand-primary/30">
-                        <i class="fa-regular fa-eye text-3xl text-brand-primary"></i>
-                    </div>
-                    <h3 class="text-3xl font-heading font-bold text-white mb-4">Our Vision</h3>
-                    <p class="text-slate-300 leading-relaxed text-lg">
-                        To create a global platform where individuals of all ages can master the art of spoken English, empowering them to achieve fluency, expand their vocabulary, and enhance their communication skills for a brighter career and enriched personal life.
-                    </p>
-                </div>
-
-                <div class="glass p-10 rounded-3xl tilt-card hover:border-brand-primary/50 transition-colors duration-500" data-aos="fade-left">
-                    <div class="w-16 h-16 bg-brand-primary/20 rounded-2xl flex items-center justify-center mb-8 border border-brand-primary/30">
-                        <i class="fa-solid fa-bullseye text-3xl text-brand-primary"></i>
-                    </div>
-                    <h3 class="text-3xl font-heading font-bold text-white mb-4">Our Mission</h3>
-                    <p class="text-slate-300 leading-relaxed text-lg">
-                        To provide high-quality, learner-centric training that focuses on language proficiency and integrates essential skills for personal and professional growth, ensuring that our students feel equipped to navigate any communication challenge with poise.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="py-24 bg-brand-dark relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand-primary font-semibold tracking-widest uppercase text-sm mb-2 block">Why Stand Out?</span>
-                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">The E2E <span class="text-gradient">Advantage</span></h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fa-solid fa-chalkboard-user text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Expert Trainers</h3>
-                    <p class="text-slate-400">Learn from seasoned professionals dedicated to refining your pronunciation and grammar.</p>
-                </div>
-                <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fa-solid fa-clock-rotate-left text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Flexible Learning</h3>
-                    <p class="text-slate-400">Study at your own pace with schedules designed to fit busy professionals and students.</p>
-                </div>
-                <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fa-solid fa-user-graduate text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Personalized Attention</h3>
-                    <p class="text-slate-400">Small batch sizes guarantee that your individual learning needs and weaknesses are addressed.</p>
-                </div>
-                <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fa-solid fa-users-rays text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Interactive Sessions</h3>
-                    <p class="text-slate-400">Engage in dynamic group discussions, role-plays, and real-time conversational practice.</p>
-                </div>
-                <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fa-solid fa-laptop-file text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Practical Approach</h3>
-                    <p class="text-slate-400">Focus on real-world applications so you are ready for interviews, meetings, and global travel.</p>
-                </div>
-                <div class="glass p-8 rounded-2xl tilt-card group" data-aos="fade-up" data-aos-delay="600">
-                    <i class="fa-solid fa-briefcase text-4xl text-brand-primary mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Career Guidance</h3>
-                    <p class="text-slate-400">Extensive support in resume building, interview skills, and workplace etiquette.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="courses" class="py-24 bg-brand-darker">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Elite <span class="text-gradient">Programs</span></h2>
-                <p class="text-slate-400">Curriculums meticulously tailored for every stage of life.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div class="glass rounded-3xl overflow-hidden shadow-2xl border-t border-brand-primary/30 group" data-aos="fade-up">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Adults Learning" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700 group-hover:opacity-80">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-dark/50 to-transparent"></div>
-                        <h3 class="absolute bottom-6 left-8 text-4xl font-heading font-bold text-white drop-shadow-lg">For Adults</h3>
-                    </div>
-                    <div class="p-8 lg:p-10">
-                        <ul class="space-y-5">
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Spoken English Masterclass</span><span class="text-slate-400 text-sm">Beginner, Intermediate & Advanced levels.</span></div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Corporate & Business English</span><span class="text-slate-400 text-sm">Perfecting workplace communication & emails.</span></div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Placement Preparation</span><span class="text-slate-400 text-sm">Interview mastery and Soft Skills development.</span></div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-circle-check text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Faculty Development</span><span class="text-slate-400 text-sm">Advanced pedagogical communication skills.</span></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="glass rounded-3xl overflow-hidden shadow-2xl border-t border-brand-primary/30 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Kids Learning" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition duration-700 group-hover:opacity-80">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-dark/50 to-transparent"></div>
-                        <h3 class="absolute bottom-6 left-8 text-4xl font-heading font-bold text-white drop-shadow-lg">For Kids</h3>
-                    </div>
-                    <div class="p-8 lg:p-10">
-                        <ul class="space-y-5">
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Foundation & Phonics</span><span class="text-slate-400 text-sm">Building strong roots with basic grammar rules.</span></div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Vocabulary Expansion</span><span class="text-slate-400 text-sm">Fun and engaging spoken English modules.</span></div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Public Speaking</span><span class="text-slate-400 text-sm">Overcoming stage fright and building confidence.</span></div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <i class="fa-solid fa-star text-brand-primary mt-1 text-xl"></i> 
-                                <div><span class="font-bold text-white block">Creative Development</span><span class="text-slate-400 text-sm">Storytelling, creative writing, and reading practice.</span></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-brand-dark relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Student <span class="text-gradient">Success</span></h2>
-                <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-2xl relative" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fa-solid fa-quote-left text-4xl text-brand-primary/30 absolute top-6 right-6"></i>
-                    <div class="flex items-center gap-2 mb-4 text-brand-primary">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 italic mb-6">"E2E transformed my confidence. The personalized attention I received helped me clear my placement interviews with ease."</p>
-                    <div class="flex items-center gap-4 border-t border-white/10 pt-4">
-                        <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold text-brand-dark">R</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Rahul S.</p>
-                            <p class="text-xs text-brand-primary">Corporate Course</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass p-8 rounded-2xl relative border border-brand-primary/40 transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fa-solid fa-quote-left text-4xl text-brand-primary/30 absolute top-6 right-6"></i>
-                    <div class="flex items-center gap-2 mb-4 text-brand-primary">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 italic mb-6">"My daughter loves the kids program! Her vocabulary has improved immensely, and she even tells stories in English now."</p>
-                    <div class="flex items-center gap-4 border-t border-white/10 pt-4">
-                        <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold text-brand-dark">P</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Priya M.</p>
-                            <p class="text-xs text-brand-primary">Kids Parent</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass p-8 rounded-2xl relative" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fa-solid fa-quote-left text-4xl text-brand-primary/30 absolute top-6 right-6"></i>
-                    <div class="flex items-center gap-2 mb-4 text-brand-primary">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 italic mb-6">"The trainers are highly professional. The flexible timings allowed me to manage my job while upgrading my communication skills."</p>
-                    <div class="flex items-center gap-4 border-t border-white/10 pt-4">
-                        <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold text-brand-dark">K</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Karthik V.</p>
-                            <p class="text-xs text-brand-primary">Advanced Spoken</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="relative pt-24 pb-12 hero-gradient border-t border-brand-primary/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 mb-16 items-center">
-                
-                <div data-aos="fade-right">
-                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-6">Let's <span class="text-brand-primary">Connect</span></h2>
-                    <p class="text-slate-300 mb-10 text-lg">Your extraordinary journey begins with a single hello. Reach out to us to schedule your comprehensive free demo session today.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-6 glass p-5 rounded-2xl hover:border-brand-primary/50 transition duration-300">
-                            <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl border border-brand-primary/30">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">Email Us</p>
-                                <a href="mailto:e2espokenacademy@gmail.com" class="text-white font-bold text-lg hover:text-brand-primary transition">e2espokenacademy@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6 glass p-5 rounded-2xl hover:border-brand-primary/50 transition duration-300">
-                            <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl border border-brand-primary/30">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">Call Us (24/7)</p>
-                                <a href="tel:+919360225859" class="text-white font-bold text-lg hover:text-brand-primary transition">+91 93602 25859</a>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6 glass p-5 rounded-2xl hover:border-brand-primary/50 transition duration-300">
-                            <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl border border-brand-primary/30">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">Our Location</p>
-                                <p class="text-white font-bold text-lg">Dindigul, Tamil Nadu</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass p-8 md:p-10 rounded-3xl border border-brand-primary/30 relative overflow-hidden" data-aos="fade-left">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl"></div>
-                    <h3 class="text-3xl font-heading font-bold text-white mb-2">Book Free Demo</h3>
-                    <p class="text-slate-400 mb-8">Fill out the form and our experts will contact you shortly.</p>
-                    
-                    <form class="space-y-5 relative z-10">
-                        <input type="text" placeholder="Full Name" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <input type="email" placeholder="Email Address" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
-                            <input type="tel" placeholder="Phone Number" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
-                        </div>
-                        <select class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-slate-400 focus:outline-none focus:border-brand-primary transition appearance-none">
-                            <option value="" disabled selected>Select Course Interest</option>
-                            <option value="adults">Adults - Spoken English</option>
-                            <option value="corporate">Business / Corporate</option>
-                            <option value="kids">Kids Programs</option>
-                        </select>
-                        <textarea rows="3" placeholder="Any specific requirements?" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500"></textarea>
-                        
-                        <button type="submit" class="w-full bg-brand-primary hover:bg-brand-primaryHover text-brand-darker font-bold text-lg py-4 rounded-xl transition transform hover:-translate-y-1 shadow-[0_5px_20px_rgba(212,175,55,0.4)]">
-                            Request Demo Class
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
-                <div class="flex items-center gap-3">
-                    <img src="e2e logo.png" alt="E2E Logo" class="h-10 w-10 rounded-full border border-brand-primary">
-                    <div>
-                        <span class="font-heading font-bold text-xl text-white block leading-none">E2E Spoken Institution</span>
-                    </div>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-darker transition duration-300 hover:-translate-y-1"><i class="fa-brands fa-facebook-f text-lg"></i></a>
-                    <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-darker transition duration-300 hover:-translate-y-1"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-brand-darker transition duration-300 hover:-translate-y-1"><i class="fa-brands fa-youtube text-lg"></i></a>
-                </div>
-
-                <p class="text-slate-500 text-sm">© 2026 E2E Spoken Institution.<br class="md:hidden"> All rights reserved.</p>
-            </div>
-        </div>
-    </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
