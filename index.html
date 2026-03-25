@@ -94,6 +94,15 @@
             100% { transform: translateY(-50px) scale(1.1); }
         }
 
+        /* Smooth Image Float */
+        @keyframes imgFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .img-float {
+            animation: imgFloat 4s ease-in-out infinite;
+        }
+
         /* Mobile Menu Transition */
         #mobile-menu {
             transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
@@ -396,17 +405,7 @@
                 </div>
                 
                 <div data-aos="fade-left" data-aos-duration="1200" class="relative mt-10 md:mt-0 tilt-card">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professionals Learning" class="rounded-3xl shadow-[0_0_40px_rgba(212,175,55,0.2)] border border-brand-primary/30 relative z-10">
-                    
-                    <div class="absolute -top-6 -left-6 glass p-5 rounded-2xl shadow-xl z-20 animate-[bounce_5s_infinite]">
-                        <i class="fa-solid fa-microphone-lines text-brand-primary text-3xl"></i>
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 glass p-5 rounded-2xl shadow-xl z-20 animate-[bounce_4s_infinite]" style="animation-delay: 1s;">
-                        <div class="text-center">
-                            <span class="block text-brand-primary font-bold text-2xl">100%</span>
-                            <span class="text-xs font-semibold tracking-wider">SUCCESS RATE</span>
-                        </div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professionals Learning" class="rounded-3xl shadow-[0_0_40px_rgba(212,175,55,0.2)] border border-brand-primary/30 relative z-10 img-float">
                 </div>
             </div>
         </section>
