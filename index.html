@@ -53,6 +53,11 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        /* Prevent iOS input zoom by ensuring 16px font size */
+        input, select, textarea {
+            font-size: 16px !important;
+        }
+
         /* Premium Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.03);
@@ -385,7 +390,7 @@
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right" data-aos-duration="1200">
-                    <div class="inline-block mt-12 md:mt-0 px-4 py-1.5 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-brand-primary font-semibold text-sm mb-6 backdrop-blur-sm">
+                    <div class="inline-block mt-12 md:mt-0 px-4 py-1.5 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-brand-primary font-semibold text-sm mb-6 backdrop-blur-sm whitespace-nowrap">
                         <i class="fa-solid fa-star mr-2"></i> Excellent Beginnings
                     </div>
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
@@ -675,19 +680,19 @@
                         <h3 class="text-3xl font-heading font-bold text-white mb-2">Book Free Demo</h3>
                         <p class="text-slate-400 mb-8">Fill out the form and our experts will contact you shortly.</p>
                         
-                        <form class="space-y-5 relative z-10">
-                            <input type="text" placeholder="Full Name" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
+                        <form id="demo-form" class="space-y-5 relative z-10">
+                            <input type="text" id="demo-name" required placeholder="Full Name" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <input type="email" placeholder="Email Address" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
-                                <input type="tel" placeholder="Phone Number" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
+                                <input type="email" id="demo-email" required placeholder="Email Address" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
+                                <input type="tel" id="demo-phone" required placeholder="Phone Number" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500">
                             </div>
-                            <select class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-slate-400 focus:outline-none focus:border-brand-primary transition appearance-none">
+                            <select id="demo-course" required class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-slate-400 focus:outline-none focus:border-brand-primary transition appearance-none">
                                 <option value="" disabled selected>Select Course Interest</option>
-                                <option value="adults">Adults - Spoken English</option>
-                                <option value="corporate">Business / Corporate</option>
-                                <option value="kids">Kids Programs</option>
+                                <option value="Adults - Spoken English">Adults - Spoken English</option>
+                                <option value="Business / Corporate">Business / Corporate</option>
+                                <option value="Kids Programs">Kids Programs</option>
                             </select>
-                            <textarea rows="3" placeholder="Any specific requirements?" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500"></textarea>
+                            <textarea id="demo-req" rows="3" placeholder="Any specific requirements?" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-brand-primary transition placeholder-slate-500"></textarea>
                             
                             <button type="submit" class="w-full bg-brand-primary hover:bg-brand-primaryHover text-brand-darker font-bold text-lg py-4 rounded-xl transition transform hover:-translate-y-1 shadow-[0_5px_20px_rgba(212,175,55,0.4)]">
                                 Request Demo Class
@@ -737,11 +742,11 @@
             <div id="login-form" class="space-y-4">
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Email</label>
-                    <input type="email" id="login-email" placeholder="your@email.com" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition">
+                    <input type="email" id="login-email" placeholder="your@email.com" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-base">
                 </div>
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Password</label>
-                    <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition">
+                    <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-base">
                 </div>
                 <button onclick="login()" class="w-full bg-brand-primary hover:bg-brand-primaryHover text-brand-darker font-bold py-3 rounded-xl transition transform hover:-translate-y-1">
                     Login
@@ -765,19 +770,19 @@
             <div id="signup-form" class="space-y-4 hidden">
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Full Name</label>
-                    <input type="text" id="signup-name" placeholder="John Doe" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition">
+                    <input type="text" id="signup-name" placeholder="John Doe" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-base">
                 </div>
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Email</label>
-                    <input type="email" id="signup-email" placeholder="your@email.com" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition">
+                    <input type="email" id="signup-email" placeholder="your@email.com" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-base">
                 </div>
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Password</label>
-                    <input type="password" id="signup-password" placeholder="••••••••" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition">
+                    <input type="password" id="signup-password" placeholder="••••••••" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-base">
                 </div>
                 <div>
                     <label class="text-slate-400 text-sm mb-1 block">Confirm Password</label>
-                    <input type="password" id="signup-confirm-password" placeholder="••••••••" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition">
+                    <input type="password" id="signup-confirm-password" placeholder="••••••••" class="w-full bg-brand-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition text-base">
                 </div>
                 <button onclick="signup()" class="w-full bg-brand-primary hover:bg-brand-primaryHover text-brand-darker font-bold py-3 rounded-xl transition transform hover:-translate-y-1">
                     Create Account
@@ -808,7 +813,7 @@
     </div>
 
     <div id="assessment-modal" class="fixed inset-0 bg-brand-darker z-[100] hidden overflow-y-auto" style="display: none;">
-        <div class="min-h-screen px-4 py-8">
+        <div class="min-h-[100dvh] px-4 py-8">
             <div class="max-w-7xl mx-auto mb-8 flex justify-between items-center">
                 <div class="flex items-center gap-4">
                     <img src="e2e logo.png" alt="E2E Logo" class="h-12 w-12 rounded-full border-2 border-brand-primary">
@@ -1085,6 +1090,8 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        let currentUser = null; // Track global auth state
+
         try {
             emailjs.init(emailJSConfig.publicKey);
             console.log('✅ EmailJS initialized successfully with key:', emailJSConfig.publicKey);
@@ -1108,6 +1115,7 @@
         }
 
         auth.onAuthStateChanged(async (user) => {
+            currentUser = user;
             if (user) {
                 await updateUIForLoggedInUser(user);
             } else {
@@ -1236,25 +1244,27 @@
                 return true;
             } catch (error) {
                 console.error('❌ Failed to send welcome email:', error);
-                console.error('Error details:', {
-                    message: error.message,
-                    text: error.text,
-                    status: error.status
-                });
                 return false;
             }
         }
 
-        function showWelcomeToast(userName, isNewUser = false) {
+        function showNotification(title, message) {
             const toast = document.getElementById('welcome-toast');
-            document.getElementById('toast-message').textContent = isNewUser ? `Welcome to E2E, ${userName}!` : `Welcome back, ${userName}!`;
-            document.getElementById('toast-submessage').textContent = isNewUser ? 'Your journey to fluency begins now' : 'Great to see you again';
+            document.getElementById('toast-message').textContent = title;
+            document.getElementById('toast-submessage').textContent = message;
             
             toast.classList.add('show');
             
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 5000);
+        }
+
+        function showWelcomeToast(userName, isNewUser = false) {
+            showNotification(
+                isNewUser ? `Welcome to E2E, ${userName}!` : `Welcome back, ${userName}!`,
+                isNewUser ? 'Your journey to fluency begins now' : 'Great to see you again'
+            );
         }
 
         async function signup() {
@@ -1409,11 +1419,41 @@
         async function logout() {
             try {
                 await auth.signOut();
-                showWelcomeToast('Logged out successfully');
+                showNotification('Logged Out', 'You have been logged out successfully.');
             } catch (error) {
                 console.error('Logout error:', error);
             }
         }
+
+        /* -----------------------------------------------------
+           WhatsApp Demo Form Submission Handler
+           ----------------------------------------------------- */
+        document.getElementById('demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!currentUser) {
+                showNotification('Login Required', 'Please login or sign up to book a free demo.');
+                openAuthModal();
+                return;
+            }
+
+            const name = document.getElementById('demo-name').value;
+            const email = document.getElementById('demo-email').value;
+            const phone = document.getElementById('demo-phone').value;
+            const course = document.getElementById('demo-course').value;
+            const req = document.getElementById('demo-req').value || 'None specified';
+
+            const message = `*New Demo Class Request* 🎓\n\nHello E2E Spoken Institution,\n\nI would like to book a free demo class. Here are my details:\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Course Interest:* ${course}\n*Additional Requirements:* ${req}\n\nLooking forward to hearing from you!`;
+            
+            const whatsappNumber = '919342547613';
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            this.reset();
+            showNotification('Success!', 'Redirecting you to WhatsApp...');
+        });
 
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
